@@ -11,21 +11,35 @@ const stylediv =
   margin:'1%',
 }
 
-export default ({ id, onChange, initiative, name, initiativeUpdate, updateName }) =>
+export default
+({
+  id,
+  name,
+  onChange,
+  initiative,
+  initiativeUpdate,
+  updateName,
+  hitpoints,
+  hpUpdate
+  }) =>
+
 <div style={stylediv}>
-      <InputGroupAddon
-        addonType='prepend'
-        >
+      <InputGroupAddon addonType='prepend'>
         Player {id}
        </InputGroupAddon>
       <Input
         type='text'
-        placeholder={ name }
+        placeholder={"Name : " + name }
         onChange={e => onChange(id, e)}
         />
       <Input
         type='number'
-        placeholder={ initiative }
+        placeholder={"initiative : "+  initiative }
         onChange={e => initiativeUpdate(id, e)}
+        />
+        <Input
+          type='number'
+          placeholder={"Hitpoints : "+  hitpoints }
+          onChange={e => hpUpdate(id, e)}
         />
 </div>

@@ -13,31 +13,37 @@ class App extends Component {
         id:1,
         name:'p1',
         initiative:20,
+        hitpoints:96
       },
       {
         id:2,
         name:'p2',
         initiative:1,
+        hitpoints:20
       },
       {
         id:3,
         name:'p3',
         initiative:14,
+        hitpoints:42
       },
       {
         id:4,
         name:'p4',
         initiative:9,
+        hitpoints:9
       },
       {
         id:5,
         name:'p5',
         initiative:5,
+        hitpoints:22
       },
       {
         id:6,
         name:'p6',
         initiative:18,
+        hitpoints:17
       }]
     }
 
@@ -45,6 +51,7 @@ class App extends Component {
     this.initiativeUpdate = this.initiativeUpdate.bind(this);
     this.sortElements = this.sortElements.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.hpUpdate = this.hpUpdate.bind(this);
   }
 
   updateName(id, e)
@@ -81,6 +88,9 @@ class App extends Component {
         this.timeout_ = setTimeout(() => {this.sortElements()}, 500);
   }
 
+  hpUpdate()
+  {}
+
   render() {
     const { elements } = this.state;
     return (
@@ -91,9 +101,12 @@ class App extends Component {
               initiative={element.initiative}
               key={element.id}
               id={element.id}
+              name={element.name}
+              hitpoints={element.hitpoints}
               onChange={this.updateName}
               initiativeUpdate={this.initiativeUpdate}
               onClick={this.onClick}
+              hpUpdate={this.hpUpdate}
               />
           ))}
         <Button
