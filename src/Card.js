@@ -52,6 +52,7 @@ export default
         /></label>
 
       <Button
+        outline color='danger'
         style={{
           width:'10%',
           marginLeft:'5%',

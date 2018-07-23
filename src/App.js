@@ -4,7 +4,10 @@ import { Button } from 'reactstrap'
 
 const randomId = () =>
  (Math.random() * 1000).toFixed(3);
-
+ const btnstyl =
+ {
+   margin:'10px',
+ }
 
 class App extends Component {
   constructor(props)
@@ -143,14 +146,14 @@ class App extends Component {
         <Button
           outline color="primary"
           onClick={e => this.onClick(e)}
-          style={{marginLeft:'1%'}}
+          style={btnstyl}
           >
            Update
          </Button>
          <Button
-           outline color="primary"
+           outline color="success"
            onClick={e => this.addCard(e)}
-           style={{marginLeft:'1.5%'}}
+           style={btnstyl}
            >
            Add Card
           </Button>
