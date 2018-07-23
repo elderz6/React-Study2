@@ -46,7 +46,6 @@ class App extends Component {
         hitpoints:17
       }]
     }
-
     this.updateName = this.updateName.bind(this);
     this.initiativeUpdate = this.initiativeUpdate.bind(this);
     this.sortElements = this.sortElements.bind(this);
@@ -60,19 +59,14 @@ class App extends Component {
     const elements = this.state.elements;
     const index = elements.findIndex(el => el.id === id);
     elements[index].name = value;
-    this.setState({elements});
   }
 
   initiativeUpdate(id, e)
   {
-    clearTimeout(this.timeout_);
-    //refactor
     const { value } = e.target;
     const elements = this.state.elements;
     const index = elements.findIndex(el => el.id === id);
     elements[index].initiative = Number(value);
-    this.setState({ elements });
-
   }
 
   sortElements()
@@ -83,13 +77,23 @@ class App extends Component {
     });
   }
 
-  onClick(e)
+  hpUpdate(id, e)
   {
-        this.timeout_ = setTimeout(() => {this.sortElements()}, 500);
+    const { value } = e.target;
+    const elements = this.state.elements;
+    const index = elements.findIndex(el => el.id === id);
+    elements[index].hitpoints = Number(value);
   }
 
-  hpUpdate()
-  {}
+  onClick(e)
+  {
+    this.sortElements();
+  }
+
+  componentWillMount()
+  {
+    this.sortElements();
+  }
 
   render() {
     const { elements } = this.state;
@@ -116,6 +120,13 @@ class App extends Component {
           >
            Update
          </Button>
+         <Button
+           outline color="primary"
+           onClick={e => this.onClick(e)}
+           style={{marginLeft:'1.5%'}}
+           >
+           Add Card
+          </Button>
       </div>
     );
   }
