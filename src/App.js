@@ -96,7 +96,7 @@ class App extends Component {
     const { elements } = this.state;
     elements[elements.length] =
     {
-      id: elements.length + 1,
+      id: randomId(),
       name: 'Player '+ (elements.length + 1),
       initiative: -100,
       hitpoints: 10
