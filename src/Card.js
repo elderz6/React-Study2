@@ -54,10 +54,10 @@ export default
       <Button
         outline color='danger'
         style={{
-          width:'10%',
           marginLeft:'5%',
+          width:'50px',
           height:'50px',
-          marginTop:'2%'}}
+          marginTop:'1.2%'}}
           onClick={() => onRemove(id)}
           >
           X

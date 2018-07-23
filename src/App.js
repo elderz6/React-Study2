@@ -7,6 +7,7 @@ const randomId = () =>
  const btnstyl =
  {
    margin:'10px',
+   marginLeft:'20px'
  }
 
 class App extends Component {
