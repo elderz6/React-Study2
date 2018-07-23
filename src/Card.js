@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import
 {
   Input,
-  InputGroupAddon,
+  Button
 } from 'reactstrap';
 
 const stylediv =
 {
-  width:'100%',
+  width:'60%',
   margin:'1%',
   display:'flex',
   flexDirection:'row',
@@ -23,11 +23,14 @@ export default
   initiativeUpdate,
   updateName,
   hitpoints,
-  hpUpdate
+  hpUpdate,
+  onRemove
   }) =>
 
 <div style={stylediv}>
-       <label>Name : { name }
+      <Input disabled  value={'Id : '+ id}/>
+
+      <label>Name : { name }
       <Input
         type='text'
         placeholder={"Name"}
@@ -42,9 +45,20 @@ export default
         /></label>
 
       <label >Hitpoints : { hitpoints }
-        <Input
+      <Input
           type='number'
           placeholder={"Hitpoints"}
           onChange={e => hpUpdate(id, e)}
         /></label>
+
+      <Button
+        style={{
+          width:'10%',
+          marginLeft:'5%',
+          height:'50px',
+          marginTop:'2%'}}
+          onClick={() => onRemove(id)}
+          >
+          X
+       </Button>
 </div>

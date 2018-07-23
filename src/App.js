@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Card from './Card';
 import { Button } from 'reactstrap'
 
+const randomId = () =>
+ (Math.random() * 1000).toFixed(3);
+
+
 class App extends Component {
   constructor(props)
   {
@@ -10,37 +14,37 @@ class App extends Component {
     {
       elements: [
       {
-        id:1,
+        id:randomId(),
         name:'p1',
         initiative:20,
         hitpoints:96
       },
       {
-        id:2,
+        id:randomId(),
         name:'p2',
         initiative:1,
         hitpoints:20
       },
       {
-        id:3,
+        id:randomId(),
         name:'p3',
         initiative:14,
         hitpoints:42
       },
       {
-        id:4,
+        id:randomId(),
         name:'p4',
         initiative:9,
         hitpoints:9
       },
       {
-        id:5,
+        id:randomId(),
         name:'p5',
         initiative:5,
         hitpoints:22
       },
       {
-        id:6,
+        id:randomId(),
         name:'p6',
         initiative:18,
         hitpoints:17
@@ -51,6 +55,8 @@ class App extends Component {
     this.sortElements = this.sortElements.bind(this);
     this.onClick = this.onClick.bind(this);
     this.hpUpdate = this.hpUpdate.bind(this);
+    this.addCard = this.addCard.bind(this);
+    this.removeElement = this.removeElement.bind(this);
   }
 
   updateName(id, e)
@@ -69,6 +75,14 @@ class App extends Component {
     elements[index].initiative = Number(value);
   }
 
+  hpUpdate(id, e)
+  {
+    const { value } = e.target;
+    const elements = this.state.elements;
+    const index = elements.findIndex(el => el.id === id);
+    elements[index].hitpoints = Number(value);
+  }
+
   sortElements()
   {
     const { elements } = this.state;
@@ -77,12 +91,24 @@ class App extends Component {
     });
   }
 
-  hpUpdate(id, e)
+  addCard()
   {
-    const { value } = e.target;
-    const elements = this.state.elements;
-    const index = elements.findIndex(el => el.id === id);
-    elements[index].hitpoints = Number(value);
+    const { elements } = this.state;
+    elements[elements.length] =
+    {
+      id: elements.length + 1,
+      name: 'Player '+ (elements.length + 1),
+      initiative: -100,
+      hitpoints: 10
+    }
+    this.sortElements();
+  }
+
+  removeElement(id)
+  {
+    let { elements } = this.state;
+    elements = elements.filter(el => el.id !==id);
+    this.setState({ elements });
   }
 
   onClick(e)
@@ -111,6 +137,7 @@ class App extends Component {
               initiativeUpdate={this.initiativeUpdate}
               onClick={this.onClick}
               hpUpdate={this.hpUpdate}
+              onRemove = {this.removeElement}
               />
           ))}
         <Button
@@ -122,7 +149,7 @@ class App extends Component {
          </Button>
          <Button
            outline color="primary"
-           onClick={e => this.onClick(e)}
+           onClick={e => this.addCard(e)}
            style={{marginLeft:'1.5%'}}
            >
            Add Card
